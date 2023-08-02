@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\QuanTri_API.props" />
+</Project>

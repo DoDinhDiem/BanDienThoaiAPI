@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="images/icon-logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="lib/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="lib/select2/css/select2.min.css"/>
+    <link rel="stylesheet" type="text/css" href="lib/jquery.bxslider/jquery.bxslider.css"/>
+    <link rel="stylesheet" type="text/css" href="lib/owl.carousel/owl.carousel.css"/>
+    <link rel="stylesheet" type="text/css" href="lib/jquery-ui/jquery-ui.css"/>
+    <link rel="stylesheet" type="text/css" href="lib/fancyBox/source/jquery.fancybox.css"/>
+    <link rel="stylesheet" type="text/css" href="css/animate.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/green.css"/>
+    <link rel="stylesheet" type="text/css" href="css/responsive.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style_frm_dkdn.css"/>
+    <link rel="stylesheet" href="css/switcher.css">
+    <script src="js/angular.min.js"></script>
+    <title>Đỗ Gia Smart Phone</title>
+</head>
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.7";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<body ng-app="DoGia" ng-controller="ChitietCtrl" class="green">
+<!-- HEADER -->
+<div id="header" class="header">
+
+    <!-- MAIN HEADER -->
+    <div class="container main-header">
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 logo">
+                <a href="index.html"><img style="height: 70px;" alt="Eco Shop" src="images/logo.png"/></a>
+            </div>
+            <div class="col-xs-4 col-sm-12 col-md-5 col-lg-4 header-search-box">
+                <form class="form-inline" style="border-radius: 5px;">
+                    <div class="form-group input-serach">
+                        <input type="text" placeholder="Search ...">
+                    </div>
+                    <button type="submit" class="pull-right btn-search"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+
+            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 group-button-header">
+                <a title="Compare" href="#" class="btn-compare">So sánh</a>
+                <a title="My wishlist" href="#" class="btn-heart">Yêu thích</a>
+
+                <div class="btn-cart" id="cart-block">
+                    <a title="SignIn" href="" data-toggle="modal" data-target="#myModal">Log In</a>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END MANIN HEADER -->
+    <div id="nav-top-menu" class="nav-top-menu">
+        <div class="container">
+            <div class="row">
+
+                <div id="main-menu" class="col-sm-12 main-menu">
+                    <nav class="navbar navbar-default">
+                        <div class="container-fluid">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                        data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                    <i class="fa fa-bars"></i>
+                                </button>
+                                <a class="navbar-brand" href="#">MENU</a>
+                            </div>
+                            <div id="navbar" class="navbar-collapse collapse" ng-controller="HomeCtrl">
+                                <ul class="nav navbar-nav">
+                                    <li class="active"><a href="index.html"><span class="fa fa-home"></span> Trang chủ</a></li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sản phẩm</a>
+                                        <ul class="dropdown-menu container-fluid">
+                                            <li class="block-container">
+                                                <ul class="block">
+                                                    <li class="link_container" ng-repeat="s in listLoaiSP">
+                                                        <a href="product-vegetables.html?id={{ s.maLoai }}">{{ s.tenLoai }}</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <!--<li><a href="#">Promotion</a></li>-->
+                                    <li><a href="news.html">Tin tức</a></li>
+                                    <li><a href="policy-faq.html">Chính sách & Câu hỏi thường gặp</a></li>
+                                    <li><a href="about-us.html">Về chúng tôi</a></li>
+                                    <li><a href="contact-us.html">Liên hệ với chúng tôi</a></li>
+                                </ul>
+                            </div><!--/.nav-collapse -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <!-- userinfo on top-->
+            <div id="form-search-opntop">
+            </div>
+            <!-- userinfo on top-->
+            <div id="user-info-opntop">
+            </div>
+            <!-- CART ICON ON MMENU -->
+            <div id="shopping-cart-box-ontop">
+                <i class="fa fa-user" data-toggle="modal" data-target="#myModal"></i>
+
+                <div class="shopping-cart-box-ontop-content"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end hea
+    end header -->
+
+<div class="columns-container">
+    <div class="container" id="columns">
+        <!-- row -->
+        <div class="row">
+            <div class="column col-xs-12 col-sm-3" id="left_column">
+                <!-- block category -->
+                <div class="block left-module">
+                    <p class="title_block"><span class="fa fa-pagelines"></span> Sản phẩm</p>
+
+                    <div class="block_content" ng-controller="HomeCtrl">
+                        <!-- layered -->
+                        <div class="layered layered-category">
+                            <div class="layered-content">
+                                <ul class="tree-menu">
+                                    <li ng-repeat="s in listLoaiSP">
+                                        <span></span><a href="product-vegetables.html?id={{ s.maLoai }}">{{ s.tenLoai }}</a>
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- ./layered -->
+                    </div>
+                </div>
+            </div>
+            <!-- ./left colunm -->
+            <!-- Center colunm-->
+            <div class="center_column col-xs-12 col-sm-9" id="center_column">
+                <!-- Product -->
+                <div id="product">
+                    <div class="primary-box row">
+                        <div class="pb-left-column col-xs-12 col-sm-6">
+                            <!-- product-imge-->
+                            <div class="product-image">
+                                <div class="product-full">
+                                    <img id="product-zoom" ng-src="img/{{sanpham.anhDaiDien}}"/>
+                                </div>
+                                <div class="product-img-thumb" id="gallery_01">
+                                    <ul style="display: flex;" class="owl-carousel" data-items="3" data-nav="true" data-dots="false" data-margin="20" data-loop="true">
+                                        <li ng-repeat="detail in sanpham.listjson_chitietanh">
+                                            <a href="" ng-click="updateProductImage(detail.anh)">
+                                            <img style="height: 80px;" id="product-zoom" ng-src="img/{{detail.anh}}"/>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                              
+                            <!-- product-imge-->
+                        </div>
+                        <div class="pb-right-column col-xs-12 col-sm-6">
+                            <h1 class="product-name">{{ sanpham.tenSanPham }}</h1>
+
+                            <div class="product-price-group">
+                                 <span class="price product-price"><span
+                                         style="color: black">Giá: </span>{{ sanpham.giaGiam.toLocaleString(vi-vn) }}</span>
+                                <span style="font-weight: bold">Giá niêm yết: </span><span class="old-price">{{ sanpham.giaBan.toLocaleString(vi-vn) }}</span>
+                                <span class="discount">-{{ sanpham.phanTram }}%</span>
+                            </div>
+                            <div class="info-orther">
+                                <p>Mã sản phẩm: {{ sanpham.maSanPham }}</p>
+
+                                <p>Tình trạng: <span class="in-stock">Còn hàng</span></p>
+
+                            </div>
+                            <div class="form-option">
+
+                                <div class="attributes">
+                                    <div class="attribute-label">Số lượng:</div>
+                                    <div class="attribute-list product-qty">
+                                        <div class="qty">
+                                            <input id="option-product-qty" type="text" value="1">
+                                        </div>
+                                        <div class="btn-plus">
+                                            <a href="#" class="btn-plus-up">
+                                                <i class="fa fa-caret-up"></i>
+                                            </a>
+                                            <a href="#" class="btn-plus-down">
+                                                <i class="fa fa-caret-down"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-action">
+                                <div class="button-group">
+                                    <a ng-click="addToCart(sanpham)" class="add-item-to-cart btn-add-cart" title="Add to Cart">Thêm vào giỏ hàng</a>
+                                </div>
+                                <div class="button-group">
+                                    <a class="wishlist" href="#"><i class="fa fa-heart-o"></i>
+                                        <br>Yêu thích</a>
+                                    <a class="compare" href="#"><i class="fa fa-signal"></i>
+                                        <br>
+                                        So sánh</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- tab product -->
+                    <div class="product-tab">
+                        <ul class="nav-tab" style="margin-bottom: 0px;">
+                            <li class="active">
+                                <a aria-expanded="false" data-toggle="tab" href="#product-detail">Chi tiết</a>
+                            </li>
+                            <li>
+                                <a aria-expanded="true" data-toggle="tab" href="#comment">Bình Luận</a>
+                            </li>
+
+                        </ul>
+                        <div class="tab-container">
+                            <div id="product-detail" class="tab-panel active">
+                                <p>{{ sanpham.moTaSanPham }}</p>
+                            </div>
+                            <div id="comment" class="tab-panel">
+                                <div class="fb-comments" data-href="https://www.facebook.com/hungdng.92"
+                                     data-width="100%" data-numposts="5"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ./tab product -->
+                    <!-- box product -->
+                    <div class="page-product-box">
+                        <h2 class="page-heading">
+                            <span class="page-heading-title"> Sản phẩm tương tự</span>
+                        </h2>
+                        <ul class="product-list owl-carousel" data-dots="false" data-loop="true" data-nav="true"
+                            data-margin="30" data-autoplayTimeout="1000" data-autoplayHoverPause="true"
+                            data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":3}}'>
+                            <li>
+                                <div class="product-container">
+                                    <div class="left-block">
+                                        <a><img class="img-responsive" alt="product"
+                                                src="images/product-detail/vegetables/broccoli_300x300.jpg"/></a>
+
+                                        <div class="quick-view">
+                                            <a title="Add to my wishlist" class="heart" href="#"></a>
+                                            <a title="Add to compare" class="compare" href="#"></a>
+                                            <a title="Quick view"
+                                               href="images/product-detail/vegetables/broccoli_600x600.jpg"
+                                               class="search fancybox-button"></a>
+                                        </div>
+                                        <div class="add-to-cart">
+                                            <a class="add-item-to-cart" title="Add to Cart" href="#"
+                                               data-name="Broccoli - 1kg"
+                                               data-price="85000" data-image="broccoli_300x300.jpg"
+                                               data-product-code="BC109">Add to Cart</a>
+                                        </div>
+                                    </div>
+                                    <div class="right-block">
+                                        <h5 class="product-name"><a href="#">Broccoli - 1kg</a></h5>
+
+                                        <div class="content_price">
+                                            <span class="price product-price"><span style="color: black">Price:</span> 85,000đ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- ./box product -->
+                    <!-- box product -->
+                    <!-- ./box product -->
+                </div>
+                <!-- Product -->
+            </div>
+            <!-- ./ Center colunm -->
+        </div>
+        <!-- ./row-->
+    </div>
+</div>
+
+<!-- POPUP LOGIN-REGISTER -->
+
+
+<!--EN LOGIN REGISTER-->
+
+<!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+<div class="demo_changer" id="demo_changer">
+    <div class="demo-icon fa fa-shopping-cart">
+        <span class="notify notify-left" id="count-cart">2</span>
+    </div>
+    <div class="form_holder">
+        <div class="cart-block">
+            <div class="cart-block-content">
+                <div class="cart-block-list">
+                    <div class="shop_cart">
+                        <table class="shop_table">
+                            <tbody id="show-cart">
+                            <!--/////////////////////////////////-->
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="toal-cart">
+                    <span>Tổng</span>
+                    <span class="toal-price pull-right" id="total_price">54,000đ</span>
+                </div>
+                <div class="cart-buttons">
+                    <a href="shoping-cart.html" class="btn-check-out">Thanh toán</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!---->
+
+<!-- Footer -->
+<footer id="footer">
+    <div class="container">
+        <!-- introduce-box -->
+        <div id="introduce-box" class="row">
+            <div class="col-md-3">
+                <div id="address-box">
+                    <a href="#"><img style="height: 70px;" src="images/logo.png" alt="logo"/></a>
+
+                    <div id="address-list">
+                        <div class="tit-name">Địa chỉ:</div>
+                        <div class="tit-contain">999 Đường Hàm Hy, Phường Cộng Lạc, Thành Phố Hải Dương, Việt Nam.</div>
+                        <div class="tit-name">Điện thoại:</div>
+                        <div class="tit-contain">(+84) 936.849.738</div>
+                        <div class="tit-name">Email:</div>
+                        <div class="tit-contain">dogiasmart@gmail.com</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="introduce-title">Chăm sóc khách hàng</div>
+                        <ul style="cursor: pointer;" id="introduce-support" class="introduce-list">
+                            <li>a Thứ 2 - thứ 6: 7h sáng đến 8h tố<i></i> </li>
+                            <li>Thứ 7 & Chủ nhật: 7h sáng đến 6h chiều</li>
+                            <li><a href="policy-faq.html">Làm thế nào để mua</a></li>
+                            <li><a href="policy-faq.html">Làm thế nào để thanh toán</a></li>
+                            <li><a href="policy-faq.html">Câu hỏi thường gặp</a></li>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="introduce-title">Chính sách</div>
+                        <ul id="introduce-Account" class="introduce-list">
+                            <li><a href="policy-faq.html">Chính sách bảo mật</a></li>
+                            <li><a href="policy-faq.html">Chính sách thanh toán</a></li>
+                            <li><a href="policy-faq.html">Chính sách đổi trả hàng</a></li>
+                            <li><a href="policy-faq.html">Điều khoản và điều kiện</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+                <div class="col-md-3">
+                <div id="contact-box">
+                    <div class="introduce-title">Đăng ký nhận bản tin</div>
+                    <div class="input-group" id="mail-box">
+                        <input type="text" placeholder="Địa chỉ email của bạn"/>
+                          <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">OK</button>
+                          </span>
+                    </div><!-- /input-group -->
+                    <div class="introduce-title">Theo dõi chúng tôi</div>
+                    <div class="social-link">
+                        <ul class="social-icons">
+                            <li><a class="rss" data-original-title="rss" href="#"></a></li>
+                            <li><a class="facebook" data-original-title="facebook" href="#"></a></li>
+                            <li><a class="twitter" data-original-title="twitter" href="#"></a></li>
+                            <li><a class="googleplus" data-original-title="googleplus" href="#"></a></li>
+                            <li><a class="linkedin" data-original-title="linkedin" href="#"></a></li>
+                            <li><a class="youtube" data-original-title="youtube" href="#"></a></li>
+                            <li><a class="vimeo" data-original-title="vimeo" href="#"></a></li>
+                            <li><a class="skype" data-original-title="skype" href="#"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- /#introduce-box -->
+
+
+        <div id="footer-menu-box">
+            <p class="text-center">Bản quyền &#169; 2023 Đỗ Gia. Đăng ký bản quyền.</p>
+        </div><!-- /#footer-menu-box -->
+    </div>
+</footer>
+
+<a href="#" class="scroll_top" title="Scroll to Top" style="display: inline;">Scroll</a>
+<!-- Script-->
+<script src="angularjs/App.js"></script>
+<script src="angularjs/home.js"></script>
+<script src="angularjs/chitiet.js"></script>
+<script type="text/javascript" src="lib/jquery/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="lib/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="lib/fancyBox/source/jquery.fancybox.pack.js" ></script>
+<script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="lib/select2/js/select2.min.js"></script>
+<script type="text/javascript" src="lib/jquery.bxslider/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="lib/owl.carousel/owl.carousel.min.js"></script>
+<script type="text/javascript" src="js/jquery.actual.min.js"></script>
+<script type="text/javascript" src="js/theme-script.js"></script>
+<script type="text/javascript" src="js/shoppingCart.js"></script>
+
+<script type="text/javascript" src="js/layout.js"></script>
+
+
+</body>
+
+</html>

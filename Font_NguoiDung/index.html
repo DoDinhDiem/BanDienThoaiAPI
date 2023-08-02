@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="images/icon-logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="lib/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="lib/select2/css/select2.min.css"/>
+    <link rel="stylesheet" type="text/css" href="lib/jquery.bxslider/jquery.bxslider.css"/>
+    <link rel="stylesheet" type="text/css" href="lib/owl.carousel/owl.carousel.css"/>
+    <link rel="stylesheet" type="text/css" href="lib/jquery-ui/jquery-ui.css"/>
+    <link rel="stylesheet" type="text/css" href="lib/fancyBox/source/jquery.fancybox.css"/>
+    <link rel="stylesheet" type="text/css" href="css/animate.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/green.css"/>
+    <link rel="stylesheet" type="text/css" href="css/responsive.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style_frm_dkdn.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="css/switcher.css">
+    <script src="js/angular.min.js"></script>
+    <script src="js/slide.js"></script>
+    <title>Đỗ Gia Smart Phone</title>
+</head>
+<body ng-app="DoGia" ng-controller="HomeCtrl" class="green">
+<!-- HEADER -->
+<div id="header" class="header">
+
+    <!-- MAIN HEADER -->
+    <div class="container main-header">
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 logo">
+                <a href="index.html"><img style="height: 70px;" alt="Eco Shop" src="images/logo.png"/></a>
+            </div>
+            <div class="col-xs-4 col-sm-12 col-md-5 col-lg-4 header-search-box">
+                <form class="form-inline" ng-submit="searchProduct()" style="border-radius: 5px;">
+                    <div class="form-group input-serach">
+                        <input id="tenSanPham" ng-model="tenSanPham" type="text" placeholder="Tìm kiếm ...">
+                    </div>
+                    <button type="submit" id="button-search" class="pull-right btn-search"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+
+            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 group-button-header">
+                <a title="Compare" href="" class="btn-compare">Compare</a>
+                <a title="My wishlist" href="" class="btn-heart">Heart</a>
+
+                <div class="btn-cart" id="cart-block">
+                    <a title="SignIn" href="" data-toggle="modal" data-target="#myModal">Log In</a>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END MANIN HEADER -->
+    <div id="nav-top-menu" class="nav-top-menu">
+        <div class="container">
+            <div class="row">
+
+                <div id="main-menu" class="col-sm-12 main-menu">
+                    <nav class="navbar navbar-default">
+                        <div class="container-fluid">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                        data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                    <i class="fa fa-bars"></i>
+                                </button>
+                                <a class="navbar-brand" href="">MENU</a>
+                            </div>
+                            <div id="navbar" class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav">
+                                    <li class="active"><a href="index.html"><span class="fa fa-home"></span> Trang chủ</a></li>
+                                    <li class="dropdown">
+                                        <a href="" class="dropdown-toggle" data-toggle="dropdown">Sản phẩm</a>
+                                        <ul class="dropdown-menu container-fluid">
+                                            <li class="block-container">
+                                                <ul class="block">
+                                                    <li class="link_container" ng-repeat="s in listLoaiSP">
+                                                        <a href="product-vegetables.html?id={{s.maLoai}}">{{ s.tenLoai }}</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <!--<li><a href="">Promotion</a></li>-->
+                                    <li><a href="news.html">Tin tức</a></li>
+                                    <li><a href="policy-faq.html">Chính sách & Câu hỏi thường gặp</a></li>
+                                    <li><a href="about-us.html">Về chúng tôi</a></li>
+                                    <li><a href="contact-us.html">Liên hệ với chúng tôi</a></li>
+                                </ul>
+                            </div><!--/.nav-collapse -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <!-- userinfo on top-->
+            <div id="form-search-opntop">
+            </div>
+            <!-- userinfo on top-->
+            <div id="user-info-opntop">
+            </div>
+            <!-- CART ICON ON MMENU -->
+            <div id="shopping-cart-box-ontop">
+                <i class="fa fa-user" data-toggle="modal" data-target="#myModal"></i>
+
+                <div class="shopping-cart-box-ontop-content"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end header -->
+
+<!-- Home slideder-->
+<div id="home-slider">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 header-top-right">
+                <div class="homeslider">
+                    <ul id="contenhomeslider">
+                      <li ng-repeat = "s in listSlide"><img src="/slider/{{ s.anh }}" /></li>
+                    </ul>
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- END Home slideder-->
+<div class="content-page">
+    <div class="container">
+        <div id="show-search">
+            <div class="category-featured Vegetables">
+                <nav class="navbar nav-menu show-brand">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div ng-show="listSearch.totalItems > 0" style="text-align: center; font-size: 20px; font-weight: bold;" ><a href=""> Tìm thấy {{listSearch.totalItems}} sản phẩm </a></div>
+                        <div ng-show="listSearch.totalItems === 0" style="text-align: center; font-size: 20px; font-weight: bold;" ><a href=""> Không tìm thấy sản phẩm nào </a></div>
+    
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse">
+    
+                        </div><!-- /.navbar-collapse -->
+                    </div><!-- /.container-fluid -->
+    
+                </nav>
+                <div class="product-featured clearfix">
+                    <div class="row">                      
+                        <div class="col-sm-12">
+                            <div class="box-right">
+                                <ul class="product-list">
+                                    <li class="col-sm-4 product-item" ng-repeat="x in listSearch.data">
+                                        <div class="left-block">
+                                            <a><img class="img-responsive" alt="product"
+                                                             src="./uploads/{{ x.anhDaiDien }}"/></a>
+    
+                                            <div class="quick-view">
+                                                <a title="Add to my wishlist" class="heart" href=""></a>
+                                                <a title="Add to compare" class="compare" href=""></a>
+                                            </div>
+                                            <div class="add-to-cart">
+                                                <a ng-click="addToCart(x)" class="add-item-to-cart" >Thêm vào giỏ hàng</a>
+                                            </div>
+                                            <div class="bestseller"></div>
+                                        </div>
+                                        <div class="right-block">
+                                            <h5 class="product-name"><a href="chilly-detail.html?id={{x.maSanPham}}">{{ x.tenSanPham }}</a></h5>
+    
+                                            <div class="content_price">
+                                                <span class="price product-price"><span style="color: black">Giá:</span> {{ x.giaGiam.toLocaleString(vi-vn) }}</span>
+                                                <br>
+                                                <div ng-show="{{ x.giaBan != x.giaGiam }}">
+                                                    <span style="color: #707070">Giá niêm yết:</span>
+                                                    <span class="old-price">{{ x.giaBan.toLocaleString(vi-vn) }}</span>                                           
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <pagination ng-model="currentPage" total-items="totalItems" items-per-page="itemsPerPage"></pagination>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>        
+            </div>
+            <div class="sortPagiBar">
+                <div class="bottom-pagination">
+                    <nav>
+                        <ul class="pagination">
+                            <li ng-class="{disabled: pageIndex == 1}" class="page-item">
+                                <a class="page-link" ng-click="changePage(pageIndex - 1)" tabindex="-1">Previous</a>
+                              </li>
+                          <li ng-class="{active: pageIndex == 1}"><a ng-click="changePage(1)">1</a></li>
+                          <li ng-class="{active: pageIndex == 2}"><a ng-click="changePage(2)">2</a></li>
+                          <li ng-class="{active: pageIndex == 3}"><a ng-click="changePage(3)">3</a></li>
+                          <li ng-if="pageIndex <= 3 || pageIndex == totalPage" ng-class="{disabled: pageIndex == totalPage}" class="page-item">
+                            <a class="page-link" ng-click="changePage(pageIndex + 1)">Next</a>
+                          </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="show-product-item">
+                    <select ng-model="pageSize" ng-change="changePageSize()" ng-options="option for option in pageSizes">
+                    </select>
+                  </div>
+                <div class="sort-product">
+                  <select>
+                    <option value="">Product Name</option>
+                    <option value="">Price</option>
+                  </select>
+                  <div class="sort-product-icon">
+                    <i class="fa fa-sort-alpha-asc"></i>
+                  </div>
+                </div>
+              </div>
+        </div>
+       
+        <div id="non-search">
+            <div class="category-featured Vegetables">
+                <nav class="navbar nav-menu show-brand">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-brand" style="text-align: center;" ><a href=""> Sản Phẩm Bán Chạy</a></div>
+    
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse">
+    
+                        </div><!-- /.navbar-collapse -->
+                    </div><!-- /.container-fluid -->
+    
+                </nav>
+                <div class="product-featured clearfix">
+                    <div class="row">                      
+                        <div class="col-sm-12">
+                            <div class="box-right">
+                                <ul class="product-list">
+                                    <li class="col-sm-4 product-item" ng-repeat="x in products">
+                                        <div class="left-block">
+                                            <a><img class="img-responsive" alt="product"
+                                                             src="./uploads/{{ x.anhDaiDien }}"/></a>
+    
+                                            <div class="quick-view">
+                                                <a title="Add to my wishlist" class="heart" href=""></a>
+                                                <a title="Add to compare" class="compare" href=""></a>
+                                            </div>
+                                            <div class="add-to-cart">
+                                                <a ng-click="addToCart(x)" class="add-item-to-cart" >Thêm vào giỏ hàng</a>
+                                            </div>
+                                            <div class="bestseller"></div>
+                                        </div>
+                                        <div class="right-block">
+                                            <h5 class="product-name"><a href="chilly-detail.html?id={{x.maSanPham}}">{{ x.tenSanPham }}</a></h5>
+    
+                                            <div class="content_price">
+                                                <span class="price product-price"><span style="color: black">Giá:</span> {{ x.giaGiam.toLocaleString(vi-vn) }}</span>
+                                                <br>
+                                                <div ng-show="{{ x.giaBan != x.giaGiam }}">
+                                                    <span style="color: #707070">Giá niêm yết:</span>
+                                                    <span class="old-price">{{ x.giaBan.toLocaleString(vi-vn) }}</span>                                           
+                                                </div>
+                                             </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+                                <ul class="product-list">
+                                    <li class="col-sm-4 product-item" ng-repeat="x in listSanPhamBanChay">
+                                        <div class="left-block">
+                                            <a><img class="img-responsive" alt="product"
+                                                             src="./uploads/{{ x.anhDaiDien }}"/></a>
+    
+                                            <div class="quick-view">
+                                                <a title="Add to my wishlist" class="heart" href=""></a>
+                                                <a title="Add to compare" class="compare" href=""></a>
+                                            </div>
+                                            <div class="add-to-cart">
+                                                <a ng-click="addToCart(x)" class="add-item-to-cart" >Thêm vào giỏ hàng</a>
+                                            </div>
+                                            <div class="bestseller"></div>
+                                        </div>
+                                        <div class="right-block">
+                                            <h5 class="product-name"><a href="chilly-detail.html?id={{x.maSanPham}}">{{ x.tenSanPham }}</a></h5>
+    
+                                            <div class="content_price">
+                                                <span class="price product-price"><span style="color: black">Giá:</span> {{ x.giaGiam.toLocaleString(vi-vn) }}</span>
+                                                <br>
+                                                <div ng-show="{{ x.giaBan != x.giaGiam }}">
+                                                    <span style="color: #707070">Giá niêm yết:</span>
+                                                    <span class="old-price">{{ x.giaBan.toLocaleString(vi-vn) }}</span>                                           
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- featured category  -->
+            <div class="category-featured Vegetables">
+                <nav class="navbar nav-menu show-brand">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-brand" style="text-align: center;"><a href=""> Sản Phẩm Giảm Giá</a></div>
+    
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse">
+    
+                        </div><!-- /.navbar-collapse -->
+                    </div><!-- /.container-fluid -->
+    
+                </nav>
+                <div class="product-featured clearfix">
+                    <div class="row">
+    
+                        <div class="col-sm-12">
+                            <div class="box-right">
+                                <!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+                                <ul class="product-list">
+                                    <li class="col-sm-4 product-item" ng-repeat="x in listSanPhamGiamGia">
+                                        <div class="left-block">
+                                            <a><img class="img-responsive" alt="product"
+                                                             src="./uploads/{{ x.anhDaiDien }}"/></a>
+    
+                                            <div class="quick-view">
+                                                <a title="Add to my wishlist" class="heart" href=""></a>
+                                                <a title="Add to compare" class="compare" href=""></a>
+                                            </div>
+                                            <div class="add-to-cart">
+                                                <a ng-click="addToCart(x)" class="add-item-to-cart" >Thêm vào giỏ hàng</a>
+                                            </div>
+                                            <div class="price-percent-reduction2">
+                                               <p style="padding-top: 8px;">-{{ x.phanTram }}%</p>
+                                            </div>
+                                        </div>
+                                        <div class="right-block">
+                                            <h5 class="product-name"><a href="chilly-detail.html?id={{x.maSanPham}}">{{ x.tenSanPham }}</a></h5>
+    
+                                            <div class="content_price">
+                                                <span class="price product-price"><span style="color: black">Giá:</span> {{ x.giaGiam.toLocaleString(vi-vn) }}</span>
+                                                <br>
+                                                <div ng-show="{{ x.giaBan != x.giaGiam }}">
+                                                    <span style="color: #707070">Giá niêm yết:</span>
+                                                    <span class="old-price">{{ x.giaBan.toLocaleString(vi-vn) }}</span>                                           
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end featured category -->
+            <div class="category-featured Vegetables">
+                <nav class="navbar nav-menu show-brand">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-brand" style="text-align: center;"><a href=""> Sản Phẩm mới </a></div>
+    
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse">
+    
+                        </div><!-- /.navbar-collapse -->
+                    </div><!-- /.container-fluid -->
+    
+                </nav>
+                <div class="product-featured clearfix">
+                    <div class="row">
+    
+                        <div class="col-sm-12">
+                            <div class="box-right">
+                                <!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+                                <ul class="product-list">
+                                    <li class="col-sm-4 product-item" ng-repeat="x in listSanPhamMoi">
+                                        <div class="left-block">
+                                            <a><img class="img-responsive" alt="product"
+                                                    src="./uploads/{{ x.anhDaiDien }}"/></a>
+    
+                                            <div class="quick-view">
+                                                <a title="Add to my wishlist" class="heart" href=""></a>
+                                                <a title="Add to compare" class="compare" href=""></a>
+                                                <a title="Quick view" href="./uploads/{{ x.anhDaiDien }}" class="search fancybox-button"></a>
+                                            </div>
+                                            <div class="add-to-cart">
+                                                <a ng-click="addToCart(x)" class="add-item-to-cart">Thêm vào giỏ hàng</a>
+                                            </div>
+                                            <div class="comingsoon"></div>
+                                        </div>
+                                        <div class="right-block">
+                                            <h5 class="product-name"><a href="chilly-detail.html?id={{x.maSanPham}}">{{ x.tenSanPham }}</a></h5>
+    
+                                            <div class="content_price">
+                                                <span class="price product-price"><span style="color: black">Giá:</span> {{ x.giaGiam.toLocaleString(vi-vn) }}</span>
+                                                <br>
+                                                <div ng-show="{{ x.giaBan != x.giaGiam }}">
+                                                    <span style="color: #707070">Giá niêm yết:</span>
+                                                    <span class="old-price">{{ x.giaBan.toLocaleString(vi-vn) }}</span>                                           
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+ 
+        <!-- end featured category -->
+    </div>
+</div>
+
+
+<!-- POPUP LOGIN-REGISTER -->
+
+<!--EN LOGIN REGISTER-->
+
+<div class="demo_changer" id="demo_changer">
+    <div class="demo-icon fa fa-shopping-cart">
+        <span class="notify notify-left" id="count-cart">2</span>
+    </div>
+    <div class="form_holder">
+        <div class="cart-block">
+            <div class="cart-block-content">
+                <div class="cart-block-list">
+                    <div class="shop_cart">
+                        <table class="shop_table">
+                            <tbody id="show-cart">
+                            <!--/////////////////////////////////-->
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="toal-cart">
+                    <span>Tổng</span>
+                    <span class="toal-price pull-right" id="total_price">54,000đ</span>
+                </div>
+                <div class="cart-buttons">
+                    <a href="shoping-cart.html" class="btn-check-out">Thanh toám</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--PEOPLE SAY-->
+
+<div id="owl-demo-ppsay">
+    <div class="container">
+        <div class="ppsay-title">Ý KIẾN CỦA KHÁCH HÀNG</div>
+        <div id="customer-item-carousel" class="carousel slide hidden-sm hidden-xs" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#customer-item-carousel" data-slide-to="0" class="active"></li>
+                <li data-target="#customer-item-carousel" data-slide-to="1"></li>
+                <li data-target="#customer-item-carousel" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner hidden-sm hidden-xs">
+                <div class="item active">
+                    <div class="ppsaydiv">
+                        <div class="ppsaycontent hidden-xs col-sm-6 col-md-6">
+                            <div class="ppsayavt col-md-3 col-sm-3">
+                                <img src="images/parallax-content2-2.png" alt="Ms. Huong Nguyen">
+                            </div>
+                            <div class="ppsayauthor col-md-9 col-sm-9">
+                                <div class="ppsaycontentcmt">
+                                    <p style="text-align: justify"><span>“ </span>Tôi hài lòng về chất lượng sản phẩm và chất lượng phục vụ của Đỗ Gia. Lời chúc tốt đẹp nhất đến cửa hàng của bạn. Mong rằng sẽ có thêm nhiều sản phẩm mới tốt nhất và dịch vụ của các bạn luôn bền vững.<span>”</span></p>
+                                </div>
+                                <p><span>Khách hàng:</span> <span class="name">Ms. Hương Nguyễn</span></p>
+                            </div>
+                        </div>
+                        <div class="ppsaycontent col-xs-12 col-sm-6 col-md-6">
+                            <div class="ppsayavt col-md-3 col-sm-3">
+                                <img src="images/parallax-content.png" alt="Ms. Linh Pham">
+                            </div>
+                            <div class="ppsayauthor col-md-9 col-sm-9">
+                                <div class="ppsaycontentcmt">
+                                    <p style="text-align: justify"><span>“ </span>Tôi bận đến nỗi không có thời gian đi siêu thị. Vì vậy, mua thực phẩm trực tuyến là sự lựa chọn tốt nhất của tôi. Sản phẩm của bạn luôn chất lượng. Tôi sẽ tiếp tục mua sản phẩm tại cửa hàng trực tuyến của bạn. <span>”</span></p>
+                                </div>
+                                <p><span>Khách hàng:</span> <span class="name">Ms. Linh Phạm</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ppsaydiv">
+                        <div class="ppsaycontent col-xs-12 col-sm-6 col-md-6">
+                            <div class="ppsayavt col-md-3 col-sm-3">
+                                <img src="images/parallax-content2-2.png" alt="Ms. Hoang Tran">
+                            </div>
+                            <div class="ppsayauthor col-md-9 col-sm-9">
+                                <div class="ppsaycontentcmt">
+                                    <p style="text-align: justify"><span>“ </span> Tôi đánh giá cao chất lượng sản phẩm và dịch vụ của bạn. Bây giờ tôi thực sự tin tưởng vào thương hiệu của bạn. <span>”</span></p>
+                                </div>
+                                <p><span>Khách hàng:</span> <span class="name">Ms. Hoang Tran</span></p>
+                            </div>
+                        </div>
+                        <div class="ppsaycontent col-xs-12 col-sm-6 col-md-6">
+                            <div class="ppsayavt col-md-3 col-sm-3">
+                                <img src="images/parallax-content.png" alt="Ms. Thu Phan">
+                            </div>
+                            <div class="ppsayauthor col-md-9 col-sm-9">
+                                <div class="ppsaycontentcmt">
+                                    <p><span style="text-align: justify">“ </span> Tôi là một bà mẹ trẻ và phải đi làm. Tôi tốn thời gian và tiền bạc để truy cập trang web của bạn và mua sản phẩm. <span>”</span></p>
+                                </div>
+                                <p><span>Khách hàng:</span> <span class="name">Ms.Thu Phan</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ppsaydiv">
+                        <div class="ppsaycontent col-xs-12 col-sm-6 col-md-6">
+                            <div class="ppsayavt col-md-3 col-sm-3">
+                                <img src="images/parallax-content-2.png" alt="Ms. Hoang Tran">
+                            </div>
+                            <div class="ppsayauthor col-md-9 col-sm-9">
+                                <div class="ppsaycontentcmt">
+                                    <p style="text-align: justify"><span>“ </span>Khi tôi tìm kiếm cửa hàng, bạn bè của tôi đã giới thiệu cửa hàng của bạn cho tôi. Lần đầu tiên tôi đến cửa hàng của bạn, tôi rất hài lòng vì sự chăm sóc khách hàng của bạn.<span>”</span></p>
+                                </div>
+                                <p><span>Khách hàng:</span> <span class="name">Ms. Lan Trần</span></p>
+                            </div>
+                        </div>
+                        <div class="ppsaycontent col-xs-12 col-sm-6 col-md-6">
+                            <div class="ppsayavt col-md-3 col-sm-3">
+                                <img src="images/parallax-content-1.png" alt="Ms. Trang Le">
+                            </div>
+                            <div class="ppsayauthor col-md-9 col-sm-9">
+                                <div class="ppsaycontentcmt">
+                                    <p style="text-align: justify"><span>“ </span>Các bạn nhân viên rất thân thiện và nhiệt tình. Cửa hàng của bạn cũng sạch sẽ và tốt đẹp. Tất nhiên, sản phẩm của bạn có chất lượng tốt nhất.<span>”</span></p>
+                                </div>
+                                <p><span>Khách hàng:</span> <span class="name">Trang Lê</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="customer-item-carousel" class="carousel slide hidden-md hidden-lg" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#customer-item-carousel" data-slide-to="0" class="active"></li>
+                <li data-target="#customer-item-carousel" data-slide-to="1"></li>
+                <li data-target="#customer-item-carousel" data-slide-to="2"></li>
+                <li data-target="#customer-item-carousel" data-slide-to="3"></li>
+                <li data-target="#customer-item-carousel" data-slide-to="4"></li>
+                <li data-target="#customer-item-carousel" data-slide-to="5"></li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+<!--END PEOPLE SAY-->
+
+<!-- Footer -->
+<footer id="footer">
+    <div class="container">
+        <!-- introduce-box -->
+        <div id="introduce-box" class="row">
+            <div class="col-md-3">
+                <div id="address-box">
+                    <a href=""><img style="height: 70px;" src="images/logo.png" alt="logo"/></a>
+
+                    <div id="address-list">
+                        <div class="tit-name">Địa chỉ:</div>
+                        <div class="tit-contain">999 Đường Hàm Hy, Phường Cộng Lạc, Thành Phố Hải Dương, Việt Nam.</div>
+                        <div class="tit-name">Điện thoại:</div>
+                        <div class="tit-contain">(+84) 936.849.738</div>
+                        <div class="tit-name">Email:</div>
+                        <div class="tit-contain">dogiasmart@gmail.com</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="introduce-title">Chăm sóc khách hàng</div>
+                        <ul style="cursor: pointer;" id="introduce-support" class="introduce-list">
+                            <li>a Thứ 2 - thứ 6: 7h sáng đến 8h tố<i></i> </li>
+                            <li>Thứ 7 & Chủ nhật: 7h sáng đến 6h chiều</li>
+                            <li><a href="policy-faq.html">Làm thế nào để mua</a></li>
+                            <li><a href="policy-faq.html">Làm thế nào để thanh toán</a></li>
+                            <li><a href="policy-faq.html">Câu hỏi thường gặp</a></li>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="introduce-title">Chính sách</div>
+                        <ul id="introduce-Account" class="introduce-list">
+                            <li><a href="policy-faq.html">Chính sách bảo mật</a></li>
+                            <li><a href="policy-faq.html">Chính sách thanh toán</a></li>
+                            <li><a href="policy-faq.html">Chính sách đổi trả hàng</a></li>
+                            <li><a href="policy-faq.html">Điều khoản và điều kiện</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+                <div class="col-md-3">
+                <div id="contact-box">
+                    <div class="introduce-title">Đăng ký nhận bản tin</div>
+                    <div class="input-group" id="mail-box">
+                        <input type="text" placeholder="Địa chỉ email của bạn"/>
+                          <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">OK</button>
+                          </span>
+                    </div><!-- /input-group -->
+                    <div class="introduce-title">Theo dõi chúng tôi</div>
+                    <div class="social-link">
+                        <ul class="social-icons">
+                            <li><a class="rss" data-original-title="rss" href=""></a></li>
+                            <li><a class="facebook" data-original-title="facebook" href=""></a></li>
+                            <li><a class="twitter" data-original-title="twitter" href=""></a></li>
+                            <li><a class="googleplus" data-original-title="googleplus" href=""></a></li>
+                            <li><a class="linkedin" data-original-title="linkedin" href=""></a></li>
+                            <li><a class="youtube" data-original-title="youtube" href=""></a></li>
+                            <li><a class="vimeo" data-original-title="vimeo" href=""></a></li>
+                            <li><a class="skype" data-original-title="skype" href=""></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- /#introduce-box -->
+
+
+        <div id="footer-menu-box">
+            <p class="text-center">Bản quyền &#169; 2023 Đỗ Gia. Đăng ký bản quyền.</p>
+        </div><!-- /#footer-menu-box -->
+    </div>
+</footer>
+
+<a href="" class="scroll_top" title="Scroll to Top" style="display: inline;">Scroll</a>
+<!-- Script-->
+<script src="angularjs/App.js"></script>
+<script src="angularjs/home.js"></script>
+<script src="angularjs/chitiet.js"></script>
+<script src="js/showSearch.js"></script>
+<script type="text/javascript" src="lib/jquery/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="lib/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="lib/fancyBox/source/jquery.fancybox.pack.js" ></script>
+<script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="lib/select2/js/select2.min.js"></script>
+<script type="text/javascript" src="lib/jquery.bxslider/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="lib/owl.carousel/owl.carousel.min.js"></script>
+<script type="text/javascript" src="js/jquery.actual.min.js"></script>
+<script type="text/javascript" src="js/theme-script.js"></script>
+<script type="text/javascript" src="js/shoppingCart.js"></script>
+
+<script type="text/javascript" src="js/layout.js"></script>
+<script>
+    setInterval(() => {
+      plusSlides(1);
+    }, 6000); // chuyển đổi slide mỗi 5 giây
+</script>
+</body>
+
+</html>
